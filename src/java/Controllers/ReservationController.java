@@ -70,4 +70,10 @@ public class ReservationController {
         return objList;
     }
 
+    public int Available(int room_id, String in_date, String out_date) {
+        
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

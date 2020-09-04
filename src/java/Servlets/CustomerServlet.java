@@ -33,13 +33,12 @@ public class CustomerServlet extends HttpServlet {
                 String address = request.getParameter("address");
                 String email = request.getParameter("email");
                 String loyalty = request.getParameter("loyalty");
-                String date_time = request.getParameter("date_time");
                 Customer obj = new Customer();
                 obj.setName(name);
                 obj.setAddress(address);
                 obj.setEmail(email);
                 obj.setLoyalty(loyalty);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     CustomerController.getInstance().Save(obj);
                     response.getWriter().println("Saved!");
@@ -52,14 +51,13 @@ public class CustomerServlet extends HttpServlet {
                 String address = request.getParameter("address");
                 String email = request.getParameter("email");
                 String loyalty = request.getParameter("loyalty");
-                String date_time = request.getParameter("date_time");
                 Customer obj = new Customer();
                 obj.setCustomer_(customer_);
                 obj.setName(name);
                 obj.setAddress(address);
                 obj.setEmail(email);
                 obj.setLoyalty(loyalty);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     CustomerController.getInstance().Update(obj);
                     response.getWriter().println("Updated!");

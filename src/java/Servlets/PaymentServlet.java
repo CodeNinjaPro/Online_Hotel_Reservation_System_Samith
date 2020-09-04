@@ -32,12 +32,11 @@ public class PaymentServlet extends HttpServlet {
                 int reservation_id = Integer.parseInt(request.getParameter("reservation_id"));
                 double amount = Double.parseDouble(request.getParameter("amount"));
                 String payment_type = request.getParameter("payment_type");
-                String date_time = request.getParameter("date_time");
                 Payment obj = new Payment();
                 obj.setReservation_id(reservation_id);
                 obj.setAmount(amount);
                 obj.setPayment_type(payment_type);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     PaymentController.getInstance().Save(obj);
                     response.getWriter().println("Saved!");
@@ -49,13 +48,12 @@ public class PaymentServlet extends HttpServlet {
                 int reservation_id = Integer.parseInt(request.getParameter("reservation_id"));
                 double amount = Double.parseDouble(request.getParameter("amount"));
                 String payment_type = request.getParameter("payment_type");
-                String date_time = request.getParameter("date_time");
                 Payment obj = new Payment();
                 obj.setPayment_id(payment_id);
                 obj.setReservation_id(reservation_id);
                 obj.setAmount(amount);
                 obj.setPayment_type(payment_type);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     PaymentController.getInstance().Update(obj);
                     response.getWriter().println("Updated!");

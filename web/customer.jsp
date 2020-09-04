@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+    <%
+
+        if (session.getAttribute("username") == null | session.getAttribute("usertype") == null) {
+            response.sendRedirect("login.jsp");
+        } 
+
+    %>
 
     <head>
 
@@ -185,7 +192,7 @@
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Montana Hotel Management System</h1>
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                            <button onclick="Export()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
                         </div>
 
 
@@ -200,44 +207,44 @@
                                             <div class="card-body">
                                                 <form class="form-horizontal">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">customer </label>
                                                         <div class="col-sm-9">
-                                                            <input id="customer_" type="text"	placeholder="customer " class="form-control form-control-warning">
+                                                            <input id="customer_" type="hidden"	value="0" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">name</label>
+                                                        <label class="col-sm-3 form-control-label">Full Name</label>
                                                         <div class="col-sm-9">
-                                                            <input id="name" type="text"	placeholder="name" class="form-control form-control-warning">
+                                                            <input id="name" type="text" onkeypress="validateName()" placeholder="name" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">address</label>
+                                                        <label class="col-sm-3 form-control-label">Address</label>
                                                         <div class="col-sm-9">
                                                             <input id="address" type="text"	placeholder="address" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">email</label>
+                                                        <label class="col-sm-3 form-control-label">Email</label>
                                                         <div class="col-sm-9">
                                                             <input id="email" type="text"	placeholder="email" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">loyalty</label>
+                                                        <label class="col-sm-3 form-control-label">Loyalty</label>
                                                         <div class="col-sm-9">
-                                                            <input id="loyalty" type="text"	placeholder="loyalty" class="form-control form-control-warning">
+                                                            <input id="loyalty" type="number"	placeholder="loyalty" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">date time</label>
                                                         <div class="col-sm-9">
-                                                            <input id="date_time" type="text"	placeholder="date time" class="form-control form-control-warning">
+                                                            <input id="date_time" type="hidden"	value="2020" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-9 offset-sm-3">
                                                             <input onclick="save()" type="button" value="Save" class="btn btn-primary">
+                                                            <input onclick="update()" type="button" value="Update" class="btn btn-primary">
+                                                            <input onclick="delet()" type="button" value="Delete" class="btn btn-primary">
                                                             <input type="reset" value="Reset" class="btn btn-primary">
                                                         </div>
                                                     </div>
@@ -247,7 +254,7 @@
                                     </div>
 
                                     <div class="col-lg-12">
-                                        <div class="card">
+                                        <div class="card" id="report">
                                             <div class="card-header d-flex align-items-center">
                                                 <h3 class="h4">History</h3>
                                             </div>
@@ -257,12 +264,12 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>customer </th>
-                                                                <th>name</th>
-                                                                <th>address</th>
-                                                                <th>email</th>
-                                                                <th>loyalty</th>
-                                                                <th>date time</th>
+                                                                <th>Customer Id</th>
+                                                                <th>Name</th>
+                                                                <th>Address</th>
+                                                                <th>Email</th>
+                                                                <th>Loyalty</th>
+                                                                <th>Date</th>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -314,7 +321,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="logout.jsp">Logout</a>
                     </div>
                 </div>
             </div>
@@ -339,6 +346,8 @@
         <script src="ajax/jquery.3.2.1.min.js" type="text/javascript"></script>
         <script src="ajax/ajax.js" type="text/javascript"></script>
         <script src="ajax/CustomerJS.js" type="text/javascript"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
     </body>
 

@@ -33,13 +33,12 @@ public class ReservationServlet extends HttpServlet {
                 int customer_id = Integer.parseInt(request.getParameter("customer_id"));
                 String in_date = request.getParameter("in_date");
                 String out_date = request.getParameter("out_date");
-                String date_time = request.getParameter("date_time");
                 Reservation obj = new Reservation();
                 obj.setRoom_id(room_id);
                 obj.setCustomer_id(customer_id);
                 obj.setIn_date(in_date);
                 obj.setOut_date(out_date);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     ReservationController.getInstance().Save(obj);
                     response.getWriter().println("Saved!");
@@ -52,14 +51,13 @@ public class ReservationServlet extends HttpServlet {
                 int customer_id = Integer.parseInt(request.getParameter("customer_id"));
                 String in_date = request.getParameter("in_date");
                 String out_date = request.getParameter("out_date");
-                String date_time = request.getParameter("date_time");
                 Reservation obj = new Reservation();
                 obj.setReservation_id(reservation_id);
                 obj.setRoom_id(room_id);
                 obj.setCustomer_id(customer_id);
                 obj.setIn_date(in_date);
                 obj.setOut_date(out_date);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     ReservationController.getInstance().Update(obj);
                     response.getWriter().println("Updated!");
@@ -74,6 +72,16 @@ public class ReservationServlet extends HttpServlet {
                 try {
                     ReservationController.getInstance().Delete(obj);
                     response.getWriter().println("Updated!");
+                } catch (Exception ex) {
+                    //error
+                }
+            } else if (action.equals("available")) {
+                int room_id = Integer.parseInt(request.getParameter("room_id"));
+                String in_date = request.getParameter("in_date");
+                String out_date = request.getParameter("out_date");
+                try {
+                    int avalability  = ReservationController.getInstance().Available(room_id, in_date, out_date);
+                    response.getWriter().println(avalability);
                 } catch (Exception ex) {
                     //error
                 }

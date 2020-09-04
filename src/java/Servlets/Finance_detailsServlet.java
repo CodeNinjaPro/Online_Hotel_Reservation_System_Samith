@@ -32,12 +32,11 @@ public class Finance_detailsServlet extends HttpServlet {
                 String description = request.getParameter("description");
                 String type = request.getParameter("type");
                 String status = request.getParameter("status");
-                String date_time = request.getParameter("date_time");
                 Finance_details obj = new Finance_details();
                 obj.setDescription(description);
                 obj.setType(type);
                 obj.setStatus(status);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     Finance_detailsController.getInstance().Save(obj);
                     response.getWriter().println("Saved!");
@@ -49,13 +48,12 @@ public class Finance_detailsServlet extends HttpServlet {
                 String description = request.getParameter("description");
                 String type = request.getParameter("type");
                 String status = request.getParameter("status");
-                String date_time = request.getParameter("date_time");
                 Finance_details obj = new Finance_details();
                 obj.setFinance_details_id(finance_details_id);
                 obj.setDescription(description);
                 obj.setType(type);
                 obj.setStatus(status);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     Finance_detailsController.getInstance().Update(obj);
                     response.getWriter().println("Updated!");

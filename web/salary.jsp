@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+    <%
 
+        if (session.getAttribute("username") == null | session.getAttribute("usertype") == null) {
+            response.sendRedirect("login.jsp");
+        }
+
+    %>
     <head>
 
         <meta charset="utf-8">
@@ -185,7 +191,7 @@
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Montana Hotel Management System</h1>
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                            <button onclick="Export()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
                         </div>
 
 
@@ -200,44 +206,44 @@
                                             <div class="card-body">
                                                 <form class="form-horizontal">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">salary plan id</label>
                                                         <div class="col-sm-9">
-                                                            <input id="salary_plan_id" type="text"	placeholder="salary plan id" class="form-control form-control-warning">
+                                                            <input id="salary_plan_id" type="hidden" value="0" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">category</label>
+                                                        <label class="col-sm-3 form-control-label">Category</label>
                                                         <div class="col-sm-9">
                                                             <input id="category" type="text"	placeholder="category" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">basic salary</label>
+                                                        <label class="col-sm-3 form-control-label">Basic Salary</label>
                                                         <div class="col-sm-9">
-                                                            <input id="basic_salary" type="text"	placeholder="basic salary" class="form-control form-control-warning">
+                                                            <input id="basic_salary" type="number" placeholder="basic salary" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">ot rate</label>
+                                                        <label class="col-sm-3 form-control-label">Over Time Rate</label>
                                                         <div class="col-sm-9">
-                                                            <input id="ot_rate" type="text"	placeholder="ot rate" class="form-control form-control-warning">
+                                                            <input id="ot_rate" type="number"	placeholder="ot rate" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">allowance</label>
+                                                        <label class="col-sm-3 form-control-label">Allowance</label>
                                                         <div class="col-sm-9">
-                                                            <input id="allowance" type="text"	placeholder="allowance" class="form-control form-control-warning">
+                                                            <input id="allowance" type="number"	placeholder="allowance" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">date time</label>
                                                         <div class="col-sm-9">
-                                                            <input id="date_time" type="text"	placeholder="date time" class="form-control form-control-warning">
+                                                            <input id="date_time" type="hidden"	value="2020" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-9 offset-sm-3">
                                                             <input onclick="save()" type="button" value="Save" class="btn btn-primary">
+                                                            <input onclick="update()" type="button" value="Update" class="btn btn-primary">
+                                                            <input onclick="delet()" type="button" value="Delete" class="btn btn-primary">
                                                             <input type="reset" value="Reset" class="btn btn-primary">
                                                         </div>
                                                     </div>
@@ -247,7 +253,7 @@
                                     </div>
 
                                     <div class="col-lg-12">
-                                        <div class="card">
+                                        <div class="card" id="report">
                                             <div class="card-header d-flex align-items-center">
                                                 <h3 class="h4">History</h3>
                                             </div>
@@ -257,12 +263,12 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>salary plan id</th>
-                                                                <th>category</th>
-                                                                <th>basic salary</th>
-                                                                <th>ot rate</th>
-                                                                <th>allowance</th>
-                                                                <th>date time</th>
+                                                                <th>Salary plan Id</th>
+                                                                <th>Category</th>
+                                                                <th>Basic Salary</th>
+                                                                <th>OT rate</th>
+                                                                <th>Allowance</th>
+                                                                <th>Date</th>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -315,7 +321,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="logout.jsp">Logout</a>
                     </div>
                 </div>
             </div>
@@ -340,6 +346,8 @@
         <script src="ajax/jquery.3.2.1.min.js" type="text/javascript"></script>
         <script src="ajax/ajax.js" type="text/javascript"></script>
         <script src="ajax/Salary_planJS.js" type="text/javascript"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
     </body>
 

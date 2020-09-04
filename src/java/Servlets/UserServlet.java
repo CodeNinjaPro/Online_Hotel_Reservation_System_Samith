@@ -33,13 +33,12 @@ public class UserServlet extends HttpServlet {
                 String user_type = request.getParameter("user_type");
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                String date_time = request.getParameter("date_time");
                 User obj = new User();
                 obj.setFull_name(full_name);
                 obj.setUser_type(user_type);
                 obj.setUsername(username);
                 obj.setPassword(password);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     UserController.getInstance().Save(obj);
                     response.getWriter().println("Saved!");
@@ -52,14 +51,13 @@ public class UserServlet extends HttpServlet {
                 String user_type = request.getParameter("user_type");
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                String date_time = request.getParameter("date_time");
                 User obj = new User();
                 obj.setUser_id(user_id);
                 obj.setFull_name(full_name);
                 obj.setUser_type(user_type);
                 obj.setUsername(username);
                 obj.setPassword(password);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     UserController.getInstance().Update(obj);
                     response.getWriter().println("Updated!");

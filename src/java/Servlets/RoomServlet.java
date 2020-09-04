@@ -35,7 +35,6 @@ public class RoomServlet extends HttpServlet {
                 String description = request.getParameter("description");
                 double price = Double.parseDouble(request.getParameter("price"));
                 String no_of_rooms = request.getParameter("no_of_rooms");
-                String date_time = request.getParameter("date_time");
                 Room obj = new Room();
                 obj.setType(type);
                 obj.setName(name);
@@ -43,7 +42,7 @@ public class RoomServlet extends HttpServlet {
                 obj.setDescription(description);
                 obj.setPrice(price);
                 obj.setNo_of_rooms(no_of_rooms);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     RoomController.getInstance().Save(obj);
                     response.getWriter().println("Saved!");
@@ -58,7 +57,6 @@ public class RoomServlet extends HttpServlet {
                 String description = request.getParameter("description");
                 double price = Double.parseDouble(request.getParameter("price"));
                 String no_of_rooms = request.getParameter("no_of_rooms");
-                String date_time = request.getParameter("date_time");
                 Room obj = new Room();
                 obj.setRoom_id(room_id);
                 obj.setType(type);
@@ -67,7 +65,7 @@ public class RoomServlet extends HttpServlet {
                 obj.setDescription(description);
                 obj.setPrice(price);
                 obj.setNo_of_rooms(no_of_rooms);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     RoomController.getInstance().Update(obj);
                     response.getWriter().println("Updated!");

@@ -33,13 +33,12 @@ public class OfferServlet extends HttpServlet {
                 String type = request.getParameter("type");
                 double amount = Double.parseDouble(request.getParameter("amount"));
                 String status = request.getParameter("status");
-                String date_time = request.getParameter("date_time");
                 Offer obj = new Offer();
                 obj.setDescription(description);
                 obj.setType(type);
                 obj.setAmount(amount);
                 obj.setStatus(status);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     OfferController.getInstance().Save(obj);
                     response.getWriter().println("Saved!");
@@ -52,14 +51,13 @@ public class OfferServlet extends HttpServlet {
                 String type = request.getParameter("type");
                 double amount = Double.parseDouble(request.getParameter("amount"));
                 String status = request.getParameter("status");
-                String date_time = request.getParameter("date_time");
                 Offer obj = new Offer();
                 obj.setOffer_id(offer_id);
                 obj.setDescription(description);
                 obj.setType(type);
                 obj.setAmount(amount);
                 obj.setStatus(status);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     OfferController.getInstance().Update(obj);
                     response.getWriter().println("Updated!");

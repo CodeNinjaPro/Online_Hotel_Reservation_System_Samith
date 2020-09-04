@@ -33,13 +33,12 @@ public class Salary_planServlet extends HttpServlet {
                 double basic_salary = Double.parseDouble(request.getParameter("basic_salary"));
                 double ot_rate = Double.parseDouble(request.getParameter("ot_rate"));
                 double allowance = Double.parseDouble(request.getParameter("allowance"));
-                String date_time = request.getParameter("date_time");
                 Salary_plan obj = new Salary_plan();
                 obj.setCategory(category);
                 obj.setBasic_salary(basic_salary);
                 obj.setOt_rate(ot_rate);
                 obj.setAllowance(allowance);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     Salary_planController.getInstance().Save(obj);
                     response.getWriter().println("Saved!");
@@ -52,14 +51,13 @@ public class Salary_planServlet extends HttpServlet {
                 double basic_salary = Double.parseDouble(request.getParameter("basic_salary"));
                 double ot_rate = Double.parseDouble(request.getParameter("ot_rate"));
                 double allowance = Double.parseDouble(request.getParameter("allowance"));
-                String date_time = request.getParameter("date_time");
                 Salary_plan obj = new Salary_plan();
                 obj.setSalary_plan_id(salary_plan_id);
                 obj.setCategory(category);
                 obj.setBasic_salary(basic_salary);
                 obj.setOt_rate(ot_rate);
                 obj.setAllowance(allowance);
-                obj.setDate_time(date_time);
+                obj.setDate_time(current_date);
                 try {
                     Salary_planController.getInstance().Update(obj);
                     response.getWriter().println("Updated!");
