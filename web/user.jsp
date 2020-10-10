@@ -101,6 +101,28 @@
                         <i class="fas fa-fw fa-money-bill-alt"></i>
                         <span>Salary Plans</span></a>
                 </li>
+                
+                 <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    Employee
+                </div>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="employee.jsp">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Employee</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="attendance.jsp">
+                        <i class="fas fa-fw fa-calendar"></i>
+                        <span>Attendance</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="salary_view.jsp">
+                        <i class="fas fa-fw fa-calendar"></i>
+                        <span>Salary</span></a>
+                </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">

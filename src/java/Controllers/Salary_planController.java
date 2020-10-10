@@ -70,4 +70,20 @@ public class Salary_planController {
         return objList;
     }
 
+    public Salary_plan SearchByDesignation(String designation) throws Exception {
+        con.getConnection();
+        Salary_plan obj = new Salary_plan();
+        ResultSet rset = con.srh("SELECT * FROM salary_plan WHERE category = '" + designation + "'");
+        while (rset.next()) {
+            obj.setSalary_plan_id(rset.getInt(1));
+            obj.setCategory(rset.getString(2));
+            obj.setBasic_salary(rset.getDouble(3));
+            obj.setOt_rate(rset.getDouble(4));
+            obj.setAllowance(rset.getDouble(5));
+            obj.setDate_time(rset.getString(6));
+        }
+
+        return obj;
+    }
+
 }

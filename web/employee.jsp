@@ -7,6 +7,7 @@
         }
 
     %>
+
     <head>
 
         <meta charset="utf-8">
@@ -56,7 +57,7 @@
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="reservation.jsp">
                         <i class="fas fa-fw fa-file"></i>
                         <span>Reservation</span></a>
@@ -101,14 +102,14 @@
                         <i class="fas fa-fw fa-money-bill-alt"></i>
                         <span>Salary Plans</span></a>
                 </li>
-                
-                 <hr class="sidebar-divider">
+
+                <hr class="sidebar-divider">
 
                 <div class="sidebar-heading">
                     Employee
                 </div>
 
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="employee.jsp">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Employee</span></a>
@@ -216,47 +217,58 @@
                             <button onclick="Export()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
                         </div>
 
+
                         <section class="forms">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card">
                                             <div class="card-header d-flex align-items-center">
-                                                <h3 class="h4">reservation</h3>
+                                                <h3 class="h4">employee</h3>
                                             </div>
                                             <div class="card-body">
                                                 <form class="form-horizontal">
                                                     <div class="form-group row">
                                                         <div class="col-sm-9">
-                                                            <input id="reservation_id" type="hidden" value="0" class="form-control form-control-warning">
+                                                            <input id="employee_id" type="hidden" value="0" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">Rooms</label>
+                                                        <label class="col-sm-3 form-control-label">Full name</label>
                                                         <div class="col-sm-9">
-                                                            <select id="room_id" class="form-control form-control-warning">
+                                                            <input id="full_name" type="text" onkeypress="validateName()" placeholder="full name" class="form-control form-control-warning">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">address</label>
+                                                        <div class="col-sm-9">
+                                                            <input id="address" type="text"	placeholder="address" class="form-control form-control-warning">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">nic</label>
+                                                        <div class="col-sm-9">
+                                                            <input id="nic" type="text" onkeypress="validateNIC()"	placeholder="nic" class="form-control form-control-warning">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">contact</label>
+                                                        <div class="col-sm-9">
+                                                            <input id="contact" type="text" onkeypress="onClickValidationContactNumber()"	placeholder="contact" class="form-control form-control-warning">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">email</label>
+                                                        <div class="col-sm-9">
+                                                            <input id="email" type="text"	placeholder="email" class="form-control form-control-warning">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">designation</label>
+                                                        <div class="col-sm-9">
+                                                            <select id="designation" class="form-control form-control-warning">
 
                                                             </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">Customer</label>
-                                                        <div class="col-sm-9">
-                                                            <select id="customer_id" class="form-control form-control-warning">
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">In Date</label>
-                                                        <div class="col-sm-9">
-                                                            <input id="in_date" type="date"	placeholder="in date" class="form-control form-control-warning">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">Out Date</label>
-                                                        <div class="col-sm-9">
-                                                            <input id="out_date" type="date"	placeholder="out date" class="form-control form-control-warning">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -276,7 +288,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <br/>
 
                                     <div class="col-lg-12">
                                         <div class="card" id="report">
@@ -289,11 +300,13 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>reservation id</th>
-                                                                <th>room id</th>
-                                                                <th>customer id</th>
-                                                                <th>in date</th>
-                                                                <th>out date</th>
+                                                                <th>employee id</th>
+                                                                <th>full name</th>
+                                                                <th>address</th>
+                                                                <th>nic</th>
+                                                                <th>contact</th>
+                                                                <th>email</th>
+                                                                <th>designation</th>
                                                                 <th>date time</th>
                                                             </tr>
                                                         </thead>
@@ -302,7 +315,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </section>
@@ -371,7 +383,7 @@
         <script src="js/demo/chart-pie-demo.js"></script>
         <script src="ajax/jquery.3.2.1.min.js" type="text/javascript"></script>
         <script src="ajax/ajax.js" type="text/javascript"></script>
-        <script src="ajax/ReservationJS.js" type="text/javascript"></script>
+        <script src="ajax/EmployeeJS.js" type="text/javascript"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 

@@ -1,0 +1,5 @@
+function checkAvailability(){
+    alert("working");
+}
+
+

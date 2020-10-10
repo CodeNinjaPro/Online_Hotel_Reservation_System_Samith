@@ -24,7 +24,7 @@ public class Salary_planServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String action = request.getParameter("action");
-            String pattern = "yyyy/MM/dd - HH:mm:ss";
+            String pattern = "yyyy/MM/dd";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
             String current_date = simpleDateFormat.format(new Date());
 

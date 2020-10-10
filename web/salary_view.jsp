@@ -7,6 +7,7 @@
         }
 
     %>
+
     <head>
 
         <meta charset="utf-8">
@@ -56,7 +57,7 @@
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="reservation.jsp">
                         <i class="fas fa-fw fa-file"></i>
                         <span>Reservation</span></a>
@@ -101,8 +102,8 @@
                         <i class="fas fa-fw fa-money-bill-alt"></i>
                         <span>Salary Plans</span></a>
                 </li>
-                
-                 <hr class="sidebar-divider">
+
+                <hr class="sidebar-divider">
 
                 <div class="sidebar-heading">
                     Employee
@@ -118,7 +119,7 @@
                         <i class="fas fa-fw fa-calendar"></i>
                         <span>Attendance</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="salary_view.jsp">
                         <i class="fas fa-fw fa-calendar"></i>
                         <span>Salary</span></a>
@@ -216,59 +217,59 @@
                             <button onclick="Export()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</button>
                         </div>
 
+
                         <section class="forms">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card">
                                             <div class="card-header d-flex align-items-center">
-                                                <h3 class="h4">reservation</h3>
+                                                <h3 class="h4">Salary</h3>
                                             </div>
                                             <div class="card-body">
                                                 <form class="form-horizontal">
                                                     <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Employee Id</label>
                                                         <div class="col-sm-9">
-                                                            <input id="reservation_id" type="hidden" value="0" class="form-control form-control-warning">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">Rooms</label>
-                                                        <div class="col-sm-9">
-                                                            <select id="room_id" class="form-control form-control-warning">
+                                                            <select id="employee_id" class="form-control form-control-warning">
 
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">Customer</label>
+                                                        <label class="col-sm-3 form-control-label">Year</label>
                                                         <div class="col-sm-9">
-                                                            <select id="customer_id" class="form-control form-control-warning">
-
+                                                            <select id="year" class="form-control form-control-warning">
+                                                                <option>2019</option>
+                                                                <option>2020</option>
+                                                                <option>2021</option>
+                                                                <option>2022</option>
+                                                                <option>2023</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">In Date</label>
+                                                        <label class="col-sm-3 form-control-label">Month</label>
                                                         <div class="col-sm-9">
-                                                            <input id="in_date" type="date"	placeholder="in date" class="form-control form-control-warning">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 form-control-label">Out Date</label>
-                                                        <div class="col-sm-9">
-                                                            <input id="out_date" type="date"	placeholder="out date" class="form-control form-control-warning">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-sm-9">
-                                                            <input id="date_time" type="hidden"	value="2020" class="form-control form-control-warning">
+                                                            <select id="month" class="form-control form-control-warning">
+                                                                <option value="1">January</option>
+                                                                <option value="2">February</option>
+                                                                <option value="3">March</option>
+                                                                <option value="4">April</option>
+                                                                <option value="5">May</option>
+                                                                <option value="6">June</option>
+                                                                <option value="7">July</option>
+                                                                <option value="8">August</option>
+                                                                <option value="9">September</option>
+                                                                <option value="10">October</option>
+                                                                <option value="11">November</option>
+                                                                <option value="12">December</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-9 offset-sm-3">
-                                                            <input onclick="save()" type="button" value="Save" class="btn btn-primary">
-                                                            <input onclick="update()" type="button" value="Update" class="btn btn-primary">
-                                                            <input onclick="delet()" type="button" value="Delete" class="btn btn-primary">
+                                                            <input onclick="salary()" type="button" value="Generate Salary Sheet" class="btn btn-primary">
                                                             <input type="reset" value="Reset" class="btn btn-primary">
                                                         </div>
                                                     </div>
@@ -276,29 +277,92 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <br/>
-
                                     <div class="col-lg-12">
-                                        <div class="card" id="report">
+                                        <div class="card" id="salary_sheet">
                                             <div class="card-header d-flex align-items-center">
-                                                <h3 class="h4">History</h3>
+                                                <h3 class="h4">Salary Sheet</h3>
                                             </div>
                                             <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-hover" id="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>reservation id</th>
-                                                                <th>room id</th>
-                                                                <th>customer id</th>
-                                                                <th>in date</th>
-                                                                <th>out date</th>
-                                                                <th>date time</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
+                                                <form class="form-horizontal">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Employee Id</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="employee_id_s" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Year</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="year_s" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Month</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="month_s" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">No of Days</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="no_of_days" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Salary per Day</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="salary_per_day" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>                                                    
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Total for EPF</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="total_for_epf" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Number of OT</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="no_of_ot" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">OT Rate</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="ot_rate" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Allowance</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="allowance" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Gross Salary</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="gross_salary" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">EPF Deduction</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="epf_deduction" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 form-control-label">Net Salary</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" id="net_salary" class="form-control form-control-warning" disabled>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-9 offset-sm-3">
+                                                <input onclick="Export()" type="button" value="Download Salary Sheet" class="btn btn-primary">
                                             </div>
                                         </div>
                                     </div>
@@ -371,9 +435,10 @@
         <script src="js/demo/chart-pie-demo.js"></script>
         <script src="ajax/jquery.3.2.1.min.js" type="text/javascript"></script>
         <script src="ajax/ajax.js" type="text/javascript"></script>
-        <script src="ajax/ReservationJS.js" type="text/javascript"></script>
+        <script src="ajax/SalaryJS.js" type="text/javascript"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
 
     </body>
 

@@ -8,6 +8,6 @@
 <!DOCTYPE html>
 <html>
     <%
-    response.sendRedirect("reservation.jsp");
+    response.sendRedirect("website/index.html");
     %>
 </html>
